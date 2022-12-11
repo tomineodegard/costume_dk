@@ -1,0 +1,251 @@
+:root {
+  font-size: 16px;
+}
+
+
+html {
+    --spaceGrey: #262626;
+    --accentGreen: #00823D;
+    --ghostWhite: #F9F9F9;
+    --lightestGrey: #E3E3E3;
+    --mediumGrey: #494949;
+
+  
+    --displayText: 'Playfair Display', serif;
+    --bodyText: 'Plus Jakarta Sans', sans-serif;
+  
+    background-color: var(--ghostWhite);
+  }
+
+  main {
+    /* margin: 0 20px 0 20px; */
+    margin: 0;
+  }
+
+
+
+ /* _________ STYLING ON MOBILE DEVICE _________ */
+.hero {
+   /* background-image: "./assets/images/costume-kategoribillede-kultur.jpg";  */
+  background-color: var(--accentGreen);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  
+.category-heading {
+  margin-top: 120px;
+}
+
+.category_h1 {
+  width: fit-content;
+  border-bottom: var(--accentGreen) solid 3px;
+}
+
+  .p2 {
+    font-size: 0.7rem;
+  }
+
+/* ----- MOST READ - LOOPVIEW ----- */
+#most-read-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+
+.mostReadTeaserImage {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.mostRead_h2 {
+  font-family: var(--bodyText);
+  color: var(--spaceGrey);
+  font-size: 2rem;
+}
+
+
+/* ----- LOOPVIEW ----- */
+#articles-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+  margin: 0 20px 0 20px;
+}
+
+.articleSpan {
+  grid-column: span 2;
+}
+
+.teaserheading {
+  font-family: var(--bodyText);
+  font-size: 1rem;
+  color: var(--spaceGrey);
+  margin-top: 1rem;
+}
+
+  
+/* ----- SINGLE VIEW ----- */
+.article-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  gap: 20px;
+  /* border: 0 1px 0 1px solid var(--spaceGrey); */
+  margin: 4rem 0 4rem 0;
+  padding: 4rem 0 4rem 0;
+}
+
+.author_and_date {
+  display: flex;
+  justify-content: start;
+  gap: 8px;
+  align-items: center;
+}
+
+.article-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.article-heading {
+  font-family: var(--bodyText);
+  font-size: 1.2rem;
+}
+
+.text-wrapper {
+  padding: 1rem 20px 0 20px;
+}
+
+.teaserimage,
+#pack-image {
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+}
+
+.two-pack-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.featuredimage {
+  object-fit: cover;
+  aspect-ratio: 9 / 16;
+}
+
+.image1, 
+.image2 {
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+.h2-single {
+  font-size: 3rem;
+}
+
+.h3-single {
+  font-size: 1.4rem;
+  font-family: var(--bodyText);
+  font-weight: 500;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--spaceGrey);
+}
+
+
+/* ----- HOMEPAGE CATEGORY-CARDS ----- */
+.container-home-categories {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.home_category {
+  /* background-image: ".assets/images/mina-drikker-kaffe.jpg"; */
+  height: 100%;
+  flex: 1;
+  transform: 1s;
+  transition: all 0.8s ease;
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+}
+
+.home_category:hover {
+  flex: 3;
+  height: 100%;
+  /* background-image: ".assets/images/costume-kategoribillede-kultur.jpg"; */
+}
+
+
+/* _________ STYLING ON TABLET DEVICE _________ */
+@media (min-width: 700px) {
+  main {
+    margin: 0;
+  }
+
+  /* ----- LOOPVIEW ----- */
+  .page_description {
+    max-width: 60ch;
+  }
+  
+  #articles-grid {
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    gap: 20px;
+  }
+
+  .articleSpan {
+    grid-column: span 2;
+  }
+  
+  /* ----- SINGLE VIEW ----- */
+  .image-wrapper {
+    top: 0;
+    height: 100vh;
+    object-fit: cover;
+    position: sticky;
+    position: -webkit-sticky;
+    padding: 0 0 0 20px;
+  }
+
+  .article-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+/* _________ STYLING ON DESKTOP DEVICE _________ */
+@media (min-width: 1024px) {
+
+    /* ----- SINGLE VIEW ----- */
+  .article-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .image-wrapper {
+    top: 0;
+    height: 100vh;
+    object-fit: cover;
+    position: sticky;
+    position: -webkit-sticky;
+    /* border-left: 1px solid var(--spaceGrey); */
+    padding: 0 0 0 20px;
+  }
+
+   /* ----- LOOPVIEW ----- */
+  #articles-grid {
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    gap: 20px;
+    /* margin: 0 120px 0 120px; */
+  }
+
+  .articleSpan {
+    grid-column: span 3;
+  }
+  
+}
