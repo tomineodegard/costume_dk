@@ -9,12 +9,8 @@ get_header(); ?>
 
 				<?php do_action( 'ocean_before_content_inner' ); ?>
 
-
-                <!-- CUSTOM HERO SECTION -->
-                <section class="hero"></section>
-
                 <!-- SECTION WITH CATEGORY CARDS -->
-                <div class="container-home-categories">
+                <!-- <div class="container-home-categories">
                     <div class="home_category">
                         <a class="first_cat_home" href="#">
                             <img class="cat-image" src = "<?php echo get_stylesheet_directory_uri()?>/assets/images/costume-kategoribillede-kultur.jpg" alt="">
@@ -32,30 +28,81 @@ get_header(); ?>
                             <img class="cat-image" src = "<?php echo get_stylesheet_directory_uri()?>/assets/images/costume-kategoribillede-kultur.jpg" alt="">
                         </a>
                     </div>
-                </div>
+                </div> -->
 
             <!-- CURRENT ISSUE WITH CTA -->
-            <section class="current_issue"></section>
+            <!-- <section class="current_issue"></section> -->
+
+            <!-- NEWEST ARTICLES -->
+            <!-- <section id="newest-container"></section> -->
+
 
              <!-- HOROSKOP SECTION -->
-             <section class="horoskop"></section>
+             <!-- <section class="horoskop"></section> -->
+
+             <template id="newest-template">
+				<article id="newest-articles" class="NewestArticleSpan">
+					<h6 class="is-category"></h6>
+					<img class="mostReadTeaserImage" src="" alt="">
+					<h5 class="mostReadTeaserHeading"></h5>
+				</article>
+			</template>
 
         <script>
-            "use strict";
-            // wait until DOM is ready
-            document.addEventListener("DOMContentLoaded", function(event) {
-            
-                console.log("DOM loaded");
+
+            console.log("hjem");
+
+            let newestMode;
+            let newestSkoenhed;
+            let newestKultur;
+            let newestGreen;
+
+            const newestContainer = document.querySelector("#newest-container");
+		    let newestTemplate = document.querySelector("template#newest-template");
+
+            document.addEventListener("DOMContentLoaded", start);
+            console.log("DOM loaded");
+		
+                function start() {
+                    console.log("start function");
+                    getJson();
+                }
+
+            async function getJson() {
+                const newestModeUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/mode?per_page=1";
+                const newestSkoenhedUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/skoenhed?per_page=1";
+                const newestKulturUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/kultur?per_page=1";
+                const newestGreenUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/costume-green?per_page=1";
+                console.log("get JSON function")
                 
-                // wait until images, links, fonts, stylesheets, and js is loaded
-                window.addEventListener("load", function(e) {
-                
-                // custom GSAP code goes here
-                console.log("window loaded");
-                
-                }, false);
-    
-            });
+                let newestModeResponse = await fetch(newestModeUrl);
+                let newestSkoenhedResponse = await fetch(newestSkoenhedUrl);
+                let newestKulturResponse = await fetch(newestKulturUrl);
+                let newestGreenResponse = await fetch(newestGreenUrl);
+
+                newestMode = await newestModeResponse.json();
+                newestSkoenhed = await newestModeResponse.json();
+                newestKultur = await newestModeResponse.json();
+                newestGreen = await newestModeResponse.json();
+
+                showNewest();
+		    }
+
+            function showNewest() {
+                console.log("vis nyeste artikler");
+                newestContainer.innerHTML = "";
+
+                newestArticles.forEach(artikel => {
+                    const newestClone = newestTemplate.cloneNode(true).content;
+                        newestClone.querySelector(".newestTeaserImage").src = artikel.featuredimage.guid;
+                        newestClone.querySelector(".newestTeaserHeading").textContent = artikel.teaserheading;
+                        newestClone.querySelector("article#most-read-articles").addEventListener("click", () => {
+                            location.href = artikel.link;
+                    })
+				newestContainer.appendChild(newestClone);
+			})
+		}
+		
 
             gsap.registerPlugin(ScrollTrigger);
 
@@ -87,6 +134,7 @@ get_header(); ?>
             
            
         </script>
+
 
 				<?php
 				// Elementor `single` location.

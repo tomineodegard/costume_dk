@@ -3,17 +3,18 @@
 
 get_header(); ?>
 
-    <section class="nyheder-container article-container">
+<section class="green-container whitespace">
         <!-- the content of the article tag is the html template for the individual single article -->
-        <article id="nyheder-artikel">
-            <div class="article-inner">
+
+        <article id="green-artikel">
+            <div class="article-container">
                 <aside class="image-wrapper">
                     <img class="featuredimage" src="" alt="">
                 </aside>
 
                 <div class="text-wrapper">
                     <div class="article-header">
-                        <h1 class="heading h2-single"></h1>
+                        <h2 class="heading h2-single"></h2>
                         <h3 class="subheading h3-single"></h3>
                         <div class="author_and_date">
                             <p class="publicationdate p2"></p>
@@ -25,11 +26,9 @@ get_header(); ?>
                     <div class="article-content">
                         <p class="bodytext1"></p>
                         <img class="image1" src="" alt="">
+
                         <p class="bodytext2"></p>
                         <img class="image2" src="" alt="">
-
-                        <p class="bodytext2"></p>
-
                     </div>
                 </div>
             </div>
@@ -38,10 +37,18 @@ get_header(); ?>
     
 
         <script>
-            console.log("single view nyheder");
+            console.log("single view costume green");
             let article;
-            const url = "https://tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/nyheder/"+<?php echo get_the_ID() ?>; 
+            const url = "https://tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/costume-green/"+<?php echo get_the_ID() ?>; 
 
+            
+            document.addEventListener("DOMContentLoaded", start);
+            
+            function start() {
+                console.log("start function");
+                getJson();
+            }
+            
             async function getJson() {
                 const data = await fetch(url);
                 article = await data.json();

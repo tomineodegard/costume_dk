@@ -5,19 +5,16 @@
 
 get_header(); ?>
 
-  
-<section class="mode-container article-container">
-        <!-- the content of the article tag is the html template for the individual single article -->
-
+<section class="single-main">
         <article id="mode-artikel">
-            <div class="article-inner">
+            <div class="article-container">
                 <aside class="image-wrapper">
-                    <img class="featuredimage" src="" alt="">
+                    <img class="sticky_featuredimage" src="" alt="">
                 </aside>
 
                 <div class="text-wrapper">
                     <div class="article-header">
-                        <h1 class="heading h2-single"></h1>
+                        <h2 class="heading h2-single"></h2>
                         <h3 class="subheading h3-single"></h3>
                         <div class="author_and_date">
                             <p class="publicationdate p2"></p>
@@ -28,40 +25,49 @@ get_header(); ?>
                     </div>
                     <div class="article-content">
                         <p class="bodytext1"></p>
-                        <div class="two-pack-grid">
-                            <div class="pack-left">
-                                <img class="pack1" id="pack-image" src="" alt="">
-                                <p class="pack-description1"></p>
-                            </div>
-                            <div class="pack-right">
-                                <img class="pack2" id="pack-image" src="" alt="">
-                                <p class="pack-description2"></p>
-                            </div>
-                        </div>
-
-                        <div class="two-pack-grid">
-                            <div class="pack-left">
-                                <img class="pack3" id="pack-image" src="" alt="">
-                                <p class="pack-description3"></p>
-                            </div>
-                            <div class="pack-right">
-                                <img class="pack4" id="pack-image" src="" alt="">
-                                <p class="pack-description4"></p>
-                            </div>
-                        </div>
+                        <img class="image1" src="" alt="">
 
                         <p class="bodytext2"></p>
-
+                        <img class="image2" src="" alt="">
                     </div>
                 </div>
             </div>
             </article>
+       
+
+            <section id="pack-grid">
+                <div class="pack-wrap">
+                    <img class="packshot1" src="" alt="">
+                    <p class="packbrand1"></p>
+                    <p class="packprice1"></p>
+                </div>
+
+                <div class="pack-wrap" >
+                    <img class="packshot2" src="" alt="">
+                    <p class="packbrand2"></p>
+                    <p class="packprice2"></p>
+                </div>
+
+                <div class="pack-wrap">
+                    <img class="packshot3" src="" alt="">
+                    <p class="packbrand3"></p>
+                    <p class="packprice3"></p>
+                </div>
+
+                <div class="pack-wrap">
+                    <img class="packshot4" src="" alt="">
+                    <p class="packbrand4"></p>
+                    <p class="packprice4"></p>
+                </div>
+            </section>
         </section>
+
 
         <script>
             console.log("single view mode");
             let article;
             const url = "https://tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/mode/"+<?php echo get_the_ID() ?>; 
+
 
             document.addEventListener("DOMContentLoaded", start);
 		
@@ -74,31 +80,40 @@ get_header(); ?>
             async function getJson() {
                 const response = await fetch(url);
                 article = await response.json();
-                showArticles();
+                showSingleArticle();
             }
 
-            function showArticles() {
+            function showSingleArticle() {
+                console.log(article);
                 document.querySelector(".heading").textContent = article.title.rendered;
                 document.querySelector(".subheading").textContent = article.subheading;
                 document.querySelector(".subheading").textContent = article.subheading;        
                 document.querySelector(".publicationdate").textContent = article.publicationdate;
                 document.querySelector(".articleauthor").textContent = "Af " + article.articleauthor;
                 document.querySelector(".bodytext1").textContent = article.bodytext1;
+                document.querySelector(".image1").src = article.image1.guid;
 
-                document.querySelector(".pack1").src = article.pack1.guid;
-                document.querySelector(".pack-description1").textContent = article.packdescription1;
+                document.querySelector(".bodytext2").textContent = article.bodytext2;
+                document.querySelector(".image2").src = article.image2.guid;
+                document.querySelector(".sticky_featuredimage").src = article.featuredimage.guid;
 
-                document.querySelector(".pack2").src = article.pack2.guid;
-                document.querySelector(".pack-description2").textContent = article.packdescription2;
+                document.querySelector(".packshot1").src = article.packshot1.guid;
+                document.querySelector(".packbrand1").textContent = article.packbrand1;
+                document.querySelector(".packprice1").textContent = article.packprice1;
 
-                document.querySelector(".pack3").src = article.pack3.guid;
-                document.querySelector(".pack-description3").textContent = article.packdescription3;
+                document.querySelector(".packshot2").src = article.packshot2.guid;
+                document.querySelector(".packbrand2").textContent = article.packbrand2;
+                document.querySelector(".packprice2").textContent = article.packprice2;
 
-                document.querySelector(".pack4").src = article.pack4.guid;
-                document.querySelector(".pack-description4").textContent = article.packdescription4;
+                document.querySelector(".packshot3").src = article.packshot3.guid;
+                document.querySelector(".packbrand3").textContent = article.packbrand3;
+                document.querySelector(".packprice3").textContent = article.packprice3;
 
-                document.querySelector(".featuredimage").src = article.featuredimage.guid;
+                document.querySelector(".packshot4").src = article.packshot4.guid;
+                document.querySelector(".packbrand4").textContent = article.packbrand4;
+                document.querySelector(".packprice4").textContent = article.packprice4;
                 }
+
 
         </script>
 
