@@ -69,6 +69,7 @@ html {
 .mostReadTeaserImage {
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  width: 100%;
 }
 
 .mostRead_h2 {
@@ -161,11 +162,13 @@ html {
 #pack-image {
   object-fit: cover;
   aspect-ratio: 3 / 4;
+  width: 100%;
 }
 
 .featuredimage {
   object-fit: cover;
   aspect-ratio: 9 / 16;
+  width: 100%;
 }
 
 .sticky_featuredimage {
@@ -178,6 +181,7 @@ html {
 .image2 {
   object-fit: cover;
   aspect-ratio: 16 / 9;
+  width: 100%;
 }
 
 .h2-single {

@@ -18,23 +18,14 @@ get_header(); ?>
 					<p class="page_description">I vores skønhedssektion her på Costume.dk holder vores skønhedsredaktør dig opdateret på alt det nye inden for hårpleje, hudpleje og makeup, så du kan holde dig skøn året rundt – fra top til tå. Her kan du blant andet finde guides til, hvordan du får mest ud af dine skønhedsprodukter, og vi forsyner dig også med tips til flotte makeup-looks.</p>
 				</section>
 
+				<nav id="filter-options"></nav>
+
 				<div class="most_read_wrapperr">
 					<h2 class="mostRead_h2">Mest læste</h2>
 					<section id="most-read-container">
 					</section>
 				</div>
 
-				<!-- <nav id="filter-options">
-				</nav> -->
-				
-				<!-- <section>
-					<ul id="filter-options">
-						<li id="filter underline chosen is-category">Hudpleje</li>
-						<li id="filter underline chosen is-category">Hårpleje</li>
-						<li id="filter underline chosen is-category">Makeup</li>
-						<li id="filter underline chosen is-category">Skønhedsfavoritter</li>
-					</ul>
-				</section> -->
 			
 			<section id="articles-grid"></section>
 			
@@ -60,9 +51,9 @@ get_header(); ?>
 
 		console.log("page skønhed individual_article_in_loop");
 
-		let artikler;
-		let alleKategorier;
-		let filterArtikel;
+		let articles;
+		let skoenheds_kategorier;
+		let filterOnCategories = "alle";
 
 		let contentTemplate = document.querySelector("template#skoenhed");
 		const container = document.querySelector("#articles-grid");
@@ -71,91 +62,65 @@ get_header(); ?>
 		const mostReadContainer = document.querySelector("#most-read-container");
 		let mostReadTemplate = document.querySelector("template#most-read-template");
 
-		let filterHudpleje = "alle";
-		let filterHaarpleje = "alle";
-		let filterMakeup = "alle";
-		let filterFavoritter = "alle";
-
 		
 		
 		document.addEventListener("DOMContentLoaded", start);
 		
 		function start() {
-			console.log("start function");
+			console.log("Start");
 			
-			getJson();
+			getJSON();
 		}
 		
-		async function getJson() {
+		async function getJSON() {
 			const siteUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/skoenhed?per_page=100";
 			const fakeMostReadUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/skoenhed?per_page=2";
 			let skoenhedsKategorierUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/skoenheds_kategorier";
 	
-			console.log("get JSON function")
+			console.log("getJSON");
 			
 			let response = await fetch(siteUrl);
 			let fakeMostReadresponse = await fetch(fakeMostReadUrl);
 			let skoenhedsKategorierResponse = await fetch(skoenhedsKategorierUrl);
 
-			artikler = await response.json();
+			articles = await response.json();
 			mostReadArticles = await fakeMostReadresponse.json();
-			alleKategorier = await skoenhedsKategorierResponse.json();
+			skoenheds_kategorier = await skoenhedsKategorierResponse.json();
+			console.log(skoenheds_kategorier);
 
-			visArtikler();
+
+			showArticles();
 			showMostRead();
-			// createButtons()
+			createButtons()
 			getCategory();
 		}
 		
 	
 		function getCategory() {
-			alleKategorier.forEach(cat => {
+			skoenheds_kategorier.forEach(cat => {
 			document.querySelector(".is-category").innerHTML += `<p class="this_category" data-taxonomy="${cat.id}">${cat.name}</p>`;
 		})
 	}
 		
-		// function createButtons() {
-		// 	alleKategorier.forEach(cat => {
-		// 		document.querySelector("#filter-options").innerHTML += `<button class="filter" data-taxonomy="${cat.id}">${cat.name}</button>`;
+		function createButtons() {
+			skoenheds_kategorier.forEach(cat => {
+				document.querySelector("#filter-options").innerHTML += `<button class="filter" data-taxonomy="${cat.id}">${cat.name}</button>`;
 				
-		// 	});
+			});
 		
-		// 	registrerButtons();
-		// }
+			registrerButtons();
+		}
 
 
-		// function registrerButtons() {
-		// 		document.querySelectorAll(".filter").forEach(elm => {
-		// 			elm.addEventListener("click", filtrering);
-		// 	})
-		// };
+		function registrerButtons() {
+				document.querySelectorAll(".filter").forEach(elm => {
+					elm.addEventListener("click", filterArticles);
+			})
+		};
 
-
-
-
-
-		// function findCategory(kategorier) {
-		// 	kategorier.forEach(kategori => {
-		// 		if(kategori.skoenheds_kategorier.id === "31") {
-		// 			document.querySelector(".is-category").innerHTML = "Hudpleje";
-		// 		}
-		// 		if(kategori.skoenheds_kategorier.id === "32") {
-		// 			document.querySelector(".is-category").innerHTML = "Hårpleje";
-		// 		}
-		// 		if(kategori.skoenheds_kategorier.id === "30") {
-		// 			document.querySelector(".is-category").innerHTML = "Makeup";
-		// 		}
-		// 		if(kategori.skoenheds_kategorier.id === "29") {
-		// 			document.querySelector(".is-category").innerHTML = "Skønhedsfavoritter";
-		// 		}
-		// 		else {
-		// 			console.log("error when finding category")
-		// 		}
-		// 	})
-		// }
 
 		function showMostRead() {
-			console.log("vis mest leste");
+			console.log("show fake most read articles");
 			mostReadContainer.innerHTML = "";
 
 			mostReadArticles.forEach(artikel => {
@@ -170,91 +135,33 @@ get_header(); ?>
 		}
 
 
-		// function filtrering() {
-		// 	filterArtikel = this.dataset.taxonomy;
+		function filterArticles() {
+			filterOnCategories = this.dataset.taxonomy;
 
-		// 	console.log(filterArtikel);
-		// 	console.log("du har valgt filtrer hud");
+			console.log(filterOnCategories);
+			console.log("du har valgt filtrer hud");
 
-		// 	visArtikler();
-		// }
+			showArticles();
+		}
 		
 
-		function visArtikler() {
-			console.log("vis artikler");
-			console.log(artikler);
+		function showArticles() {
+			console.log("show articles");
+			console.log(articles);
 
 			container.innerHTML = "";
 
-			artikler.forEach(artikel => {
-				// if (artikel.alleKategorier.includes(parseInt(filterArtikel))) {
+			articles.forEach(artikel => {
+				if (artikel.skoenheds_kategorier.includes(parseInt(filterOnCategories)) || filterOnCategories == "alle") {
                     let clone = contentTemplate.cloneNode(true).content;
 					clone.querySelector(".teaserimage").src = artikel.featuredimage.guid;
                     clone.querySelector(".teaserheading").textContent = artikel.teaserheading;
                     clone.querySelector("article#individual_article_in_loop").addEventListener("click", () => { location.href = artikel.link;})
                     
                     container.appendChild(clone);
-                // }
-				// else {
-				// 	console.log("det er fejl");
-				// }
+                }
             })
 		}
-
-
-		
-		// function selectFilter(userEvent) {
-		// 	const taxonomy = userEvent.target.dataset.taxonomy;
-		// 	if(taxonomy === "31") {
-		// 		filterHudplejeArtikler();
-		// 	}
-		// 	else if(taxonomy === "32") {
-		// 		filterHaarplejeArtikler();
-		// 	} 
-		// 	else if(taxonomy === "30") {
-		// 		filterMakeupArtikler();
-		// 	} 
-		// 	else if(taxonomy === "29") {
-		// 		filterFavoritterArtikler();
-		// 	} 
-		// 	console.log(`jeg har valgt ${taxonomy}`);
-		// 	// setFilter(taxonomy);
-		// }
-
-
-		// function setFilter(taxonomy) {
-		// 	settings.filterBy = taxonomy;
-		// 	buildList();
-		// }
-
-		// function buildList() {
-		// 	const currentList = filterList(artikler);
-		// 	console.log("current list is showing now");
-		// 	console.log(`${currentList}`);
-		// 	// visArtikler(filteredList);
-		// }
-
-
-
-		
-		// function filterHudplejeArtikler(artikel) {
-		// 	return artikel.categoryId === "31";
-		// }
-
-		// function filterHudplejeArtikler() {
-		// 	console.log("du har valgt filtrer hud");
-		// 	// filterHud = this.dataset.hud;
-        //     //  //fjern .valgt fra alle
-        //     // document.querySelectorAll(".filter").forEach(elm => {
-        //     //     elm.classList.remove("chosen");
-        //     // });
-        //     // //tilføj .valgt til den valgte
-        //     // this.classList.add("chosen");
-        //     // visArtikler();
-        // }
-
-		
-
 
 		</script>
 
