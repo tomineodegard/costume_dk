@@ -19,30 +19,29 @@ get_header(); ?>
 				</section>
 
 				<nav id="filter-options"></nav>
+				<section id="articles-grid"></section>
 
-				<div class="most_read_wrapperr">
+				<div class="most_read_wrapper">
 					<h2 class="mostRead_h2">Mest læste</h2>
-					<section id="most-read-container">
-					</section>
+					<section id="most-read-container"></section>
 				</div>
 
-			
-			<section id="articles-grid"></section>
-			
+				
 
 			<template id="most-read-template">
 				<article id="most-read-articles" class="mostReadArticleSpan">
-					<h6 class="is-category"></h6>
 					<img class="mostReadTeaserImage" src="" alt="">
+					<p class="is_category"></p>
+					<p class="is_green"></p>
 					<h5 class="mostReadTeaserHeading"></h5>
 				</article>
 			</template>
 
 			<template id="skoenhed">
 				<article id="individual_article_in_loop" class="articleSpan">
-					<div class="is-category"></div>
-					<!-- <h6 class="is-category"></h6> -->
 					<img class="teaserimage" src="" alt="">
+					<p class="is_category "></p>
+					<p class="is_green"></p>
 					<h5 class="teaserheading"></h5>
 				</article>
 			</template>
@@ -53,7 +52,7 @@ get_header(); ?>
 
 		let articles;
 		let skoenheds_kategorier;
-		let filterOnCategories = "alle";
+		let hasThisFilter = "alle";
 
 		let contentTemplate = document.querySelector("template#skoenhed");
 		const container = document.querySelector("#articles-grid");
@@ -61,7 +60,6 @@ get_header(); ?>
 		let mostReadArticles;
 		const mostReadContainer = document.querySelector("#most-read-container");
 		let mostReadTemplate = document.querySelector("template#most-read-template");
-
 		
 		
 		document.addEventListener("DOMContentLoaded", start);
@@ -92,15 +90,8 @@ get_header(); ?>
 			showArticles();
 			showMostRead();
 			createButtons()
-			getCategory();
 		}
 		
-	
-		function getCategory() {
-			skoenheds_kategorier.forEach(cat => {
-			document.querySelector(".is-category").innerHTML += `<p class="this_category" data-taxonomy="${cat.id}">${cat.name}</p>`;
-		})
-	}
 		
 		function createButtons() {
 			skoenheds_kategorier.forEach(cat => {
@@ -136,10 +127,7 @@ get_header(); ?>
 
 
 		function filterArticles() {
-			filterOnCategories = this.dataset.taxonomy;
-
-			console.log(filterOnCategories);
-			console.log("du har valgt filtrer hud");
+			hasThisFilter = this.dataset.taxonomy;
 
 			showArticles();
 		}
@@ -150,16 +138,41 @@ get_header(); ?>
 			console.log(articles);
 
 			container.innerHTML = "";
-
 			articles.forEach(artikel => {
-				if (artikel.skoenheds_kategorier.includes(parseInt(filterOnCategories)) || filterOnCategories == "alle") {
+				if (artikel.skoenheds_kategorier.includes(parseInt(hasThisFilter)) || hasThisFilter == "alle") {
+
                     let clone = contentTemplate.cloneNode(true).content;
+
+					if (artikel.skoenheds_kategorier[0] == 32) {
+						clone.querySelector(".is_category").textContent = "Hårpleje";
+					}
+
+					if (artikel.skoenheds_kategorier[0] == 31) {
+						clone.querySelector(".is_category").textContent = "Hudpleje";
+					}
+
+					if (artikel.skoenheds_kategorier[0] == 30) {
+						clone.querySelector(".is_category").textContent = "Makeup";
+					}
+						
+
+					if (artikel.skoenheds_kategorier[0] == 29) {
+						clone.querySelector(".is_category").textContent = "Skønhedsfavoritter";
+					}
+
+					if (artikel.skoenheds_kategorier[0] == 41) {
+						clone.querySelector(".is_green").textContent = "Costume Green";
+					}
+					
 					clone.querySelector(".teaserimage").src = artikel.featuredimage.guid;
                     clone.querySelector(".teaserheading").textContent = artikel.teaserheading;
                     clone.querySelector("article#individual_article_in_loop").addEventListener("click", () => { location.href = artikel.link;})
                     
                     container.appendChild(clone);
-                }
+           	}
+			   else {
+				   console.log("error");
+			   }
             })
 		}
 
