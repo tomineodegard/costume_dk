@@ -1,11 +1,9 @@
 <?php
 
-// $embed = get_field("embed_instagram");
-
 get_header(); ?>
 
   
-        <section class="single-main">
+        <section class="single_sticky_section">
         <article id="kultur-artikel">
             <div class="article-container">
                 <aside class="image-wrapper">
@@ -13,16 +11,18 @@ get_header(); ?>
                 </aside>
 
                 <div class="text-wrapper">
-                    <div class="article-header">
-                        <h2 class="heading h2-single"></h2>
-                        <h3 class="subheading h3-single"></h3>
+                    <div class="header_container">
+                        <p class="is_category"></p>
+                        <p class="is_green"></p>
+                        <h1 class="heading h1-single"></h1>
+                        <h2 class="subheading h2-single"></h2>
                         <div class="author_and_date">
                             <p class="publicationdate p2"></p>
                             <p>-</p>
                             <p class="articleauthor p2"></p>
                         </div>
-                        
                     </div>
+
                     <div class="article-content">
                         <p class="bodytext1"></p>
                         <img class="image1" src="" alt="">

@@ -19,21 +19,21 @@ get_header(); ?>
 				</section>
 
 				<nav id="filter-options"></nav>
-				<section id="articles-grid"></section>
+				<section id="articles-grid" class="grid"></section>
 
-				<div class="most_read_wrapper">
-					<h2 class="mostRead_h2">Mest læste</h2>
-					<section id="most-read-container"></section>
+				<div class="most_read_wrapper grid">
+					<h2 class="most_read_heading">Mest læste</h2>
+					<section id="most_read_container" class="grid"></section>
 				</div>
 
 				
 
-			<template id="most-read-template">
-				<article id="most-read-articles" class="mostReadArticleSpan">
-					<img class="mostReadTeaserImage" src="" alt="">
+			<template id="most_read_template">
+				<article class="articleSpan">
+					<img class="mostread_teaserimage" src="" alt="">
 					<p class="is_category "></p>
 					<p class="is_green"></p>
-					<h5 class="mostReadTeaserHeading"></h5>
+					<h5 class="teaserheading"></h5>
 				</article>
 			</template>
 
@@ -58,8 +58,8 @@ get_header(); ?>
 		const container = document.querySelector("#articles-grid");
 
 		let mostReadArticles;
-		const mostReadContainer = document.querySelector("#most-read-container");
-		let mostReadTemplate = document.querySelector("template#most-read-template");
+		const mostReadContainer = document.querySelector("#most_read_container");
+		let mostReadTemplate = document.querySelector("template#most_read_template");
 		
 		
 		document.addEventListener("DOMContentLoaded", start);
@@ -72,7 +72,7 @@ get_header(); ?>
 		
 		async function getJSON() {
 			const siteUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/kultur?per_page=100";
-			const fakeMostReadUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/kultur?per_page=2";
+			const fakeMostReadUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/kultur?per_page=4";
 			let kulturKategorierUrl = "https://www.tomineodegard.dk/kea/eksamen/costume/wp-json/wp/v2/kultur_kategorier";
 	
 			console.log("getJSON");
@@ -115,14 +115,48 @@ get_header(); ?>
 			mostReadContainer.innerHTML = "";
 
 			mostReadArticles.forEach(artikel => {
-				const mostReadClone = mostReadTemplate.cloneNode(true).content;
-					mostReadClone.querySelector(".mostReadTeaserImage").src = artikel.featuredimage.guid;
-					mostReadClone.querySelector(".mostReadTeaserHeading").textContent = artikel.teaserheading;
-                    mostReadClone.querySelector("article#most-read-articles").addEventListener("click", () => {
-                        location.href = artikel.link;
-				})
-				mostReadContainer.appendChild(mostReadClone);
-			})
+				if (artikel.kultur_kategorier.includes(parseInt(hasThisFilter)) || hasThisFilter == "alle") {
+
+                    let mostReadClone = mostReadTemplate.cloneNode(true).content;
+
+					if (artikel.kultur_kategorier[0] === 29) {
+						clone.querySelector(".is_category").textContent = "Skønhedsfavoritter";
+						clone.querySelector(".is_green").style.display = "none";
+					}
+
+					if (artikel.kultur_kategorier[0] === 30) {
+						mostReadClone.querySelector(".is_category").textContent = "Makeup";
+						mostReadClone.querySelector(".is_green").style.display = "none";
+					}
+
+					if (artikel.kultur_kategorier[0] === 31) {
+						mostReadClone.querySelector(".is_category").textContent = "Hudpleje";
+						mostReadClone.querySelector(".is_green").style.display = "none";
+					}
+						
+
+					if (artikel.kultur_kategorier[0] === 32) {
+						mostReadClone.querySelector(".is_category").textContent = "Hårpleje";
+						mostReadClone.querySelector(".is_green").style.display = "none";
+					}
+
+					if (artikel.kultur_kategorier[0] === 41) {
+						mostReadClone.querySelector(".is_green").textContent = "Costume Green";
+						mostReadClone.querySelector(".is_category").style.display = "none";
+					}
+					
+					mostReadClone.querySelector(".mostread_teaserimage").src = artikel.featuredimage.guid;
+                    mostReadClone.querySelector(".teaserheading").textContent = artikel.teaserheading;
+					mostReadClone.querySelector("article.articleSpan").addEventListener("click", () => {
+						location.href = artikel.link;
+					})
+                    
+					mostReadContainer.appendChild(mostReadClone);
+           		}
+			   else {
+				   console.log("error");
+			   }
+            })
 		}
 
 
@@ -143,25 +177,30 @@ get_header(); ?>
 
                     let clone = contentTemplate.cloneNode(true).content;
 
-					if (artikel.kultur_kategorier[0] == 45) {
-						clone.querySelector(".is_category").textContent = "Inspiration";
+					if (artikel.kultur_kategorier[0] === 29) {
+						clone.querySelector(".is_category").textContent = "Skønhedsfavoritter";
+						clone.querySelector(".is_green").style.display = "none";
 					}
 
-					if (artikel.kultur_kategorier[0] == 46) {
-						clone.querySelector(".is_category").textContent = "Trending";
+					if (artikel.kultur_kategorier[0] === 30) {
+						clone.querySelector(".is_category").textContent = "Makeup";
+						clone.querySelector(".is_green").style.display = "none";
 					}
 
-					if (artikel.kultur_kategorier[0] == 47) {
-						clone.querySelector(".is_category").textContent = "Sæsonens Favoritter";
+					if (artikel.kultur_kategorier[0] === 31) {
+						clone.querySelector(".is_category").textContent = "Hudpleje";
+						clone.querySelector(".is_green").style.display = "none";
 					}
 						
 
-					if (artikel.kultur_kategorier[0] == 48) {
-						clone.querySelector(".is_category").textContent = "kulturuge";
+					if (artikel.kultur_kategorier[0] === 32) {
+						clone.querySelector(".is_category").textContent = "Hårpleje";
+						clone.querySelector(".is_green").style.display = "none";
 					}
 
-					if (artikel.kultur_kategorier[0] == 49) {
+					if (artikel.kultur_kategorier[0] === 41) {
 						clone.querySelector(".is_green").textContent = "Costume Green";
+						clone.querySelector(".is_category").style.display = "none";
 					}
 					
 					clone.querySelector(".teaserimage").src = artikel.featuredimage.guid;

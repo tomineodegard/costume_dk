@@ -1,11 +1,9 @@
 <?php
 
-// $embed = get_field("embed_instagram");
-
 get_header(); ?>
 
   
-        <section class="single-main">
+        <section class="single_sticky_section">
         <article id="skoenhed-artikel">
             <div class="article-container">
                 <aside class="image-wrapper">
@@ -13,17 +11,18 @@ get_header(); ?>
                 </aside>
 
                 <div class="text-wrapper">
-                    <div class="article-header">
-                    <p class="is-category"></p>
-                        <h2 class="heading h2-single"></h2>
-                        <h3 class="subheading h3-single"></h3>
+                    <div class="header_container">
+                        <p class="is_category"></p>
+                        <p class="is_green"></p>
+                        <h1 class="heading h1-single"></h1>
+                        <h2 class="subheading h2-single"></h2>
                         <div class="author_and_date">
                             <p class="publicationdate p2"></p>
                             <p>-</p>
                             <p class="articleauthor p2"></p>
                         </div>
-                        
                     </div>
+
                     <div class="article-content">
                         <p class="bodytext1"></p>
                         <img class="image1" src="" alt="">
@@ -37,29 +36,31 @@ get_header(); ?>
        
 
             <section id="pack-grid">
-                <div class="pack-wrap">
+                <figure class="pack-wrap">
                     <img class="packshot1" src="" alt="">
-                    <p class="packbrand1"></p>
-                    <p class="packprice1"></p>
-                </div>
+                    <div class="packinfo">
+                        <p class="packbrand1"></p>
+                        <p class="packprice1"></p>
+                    </div>
+                </figure>
 
-                <div class="pack-wrap" >
+                <figure class="pack-wrap" >
                     <img class="packshot2" src="" alt="">
                     <p class="packbrand2"></p>
                     <p class="packprice2"></p>
-                </div>
+                </figure>
 
-                <div class="pack-wrap">
+                <figure class="pack-wrap">
                     <img class="packshot3" src="" alt="">
                     <p class="packbrand3"></p>
                     <p class="packprice3"></p>
-                </div>
+                </figure>
 
-                <div class="pack-wrap">
+                <figure class="pack-wrap">
                     <img class="packshot4" src="" alt="">
                     <p class="packbrand4"></p>
                     <p class="packprice4"></p>
-                </div>
+                </figure>
             </section>
         </section>
 
@@ -87,6 +88,8 @@ get_header(); ?>
 
             function showSingleArticle() {
                 console.log(article);
+
+                document.querySelector(".is_category").textContent = article.skoenheds_kategorier;
                 document.querySelector(".heading").textContent = article.title.rendered;
                 document.querySelector(".subheading").textContent = article.subheading;
                 document.querySelector(".subheading").textContent = article.subheading;        
@@ -114,7 +117,7 @@ get_header(); ?>
                 document.querySelector(".packshot4").src = article.packshot4.guid;
                 document.querySelector(".packbrand4").textContent = article.packbrand4;
                 document.querySelector(".packprice4").textContent = article.packprice4;
-                }
+            }
 
 
         </script>
