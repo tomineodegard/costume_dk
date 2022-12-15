@@ -82,9 +82,11 @@ get_header(); ?>
                 const response = await fetch(url);
                 article = await response.json();
                 showSingleArticle();
+                // handleIfEmpty();
             }
 
             function showSingleArticle() {
+
                 console.log(article);
                 document.querySelector(".heading").textContent = article.title.rendered;
                 document.querySelector(".subheading").textContent = article.subheading;
@@ -113,8 +115,22 @@ get_header(); ?>
                 document.querySelector(".packshot4").src = article.packshot4.guid;
                 document.querySelector(".packbrand4").textContent = article.packbrand4;
                 document.querySelector(".packprice4").textContent = article.packprice4;
-                }
+                };
 
+
+                // function handleIfEmpty() {
+                // const myImgElements = document.querySelectorAll("img");
+
+                // setTimeout(() => {
+                //     myImgElements.map((elm) => {
+                //         if (elm.src === undefined) {
+                //             console.log(elm);
+                //     }})
+                //     }, 5000)
+                // // myImgElements.map((elm) => {
+                // //     if (elm.src === undefined) {
+                // //     }})
+                // };
 
         </script>
 

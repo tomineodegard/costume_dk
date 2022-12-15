@@ -14,8 +14,6 @@ get_header(); ?>
 
                 <div class="text-wrapper">
                     <div class="header_container">
-                        <p class="is_category"></p>
-                        <p class="is_green"></p>
                         <h1 class="heading h1-single"></h1>
                         <h2 class="subheading h2-single"></h2>
                         <div class="author_and_date">

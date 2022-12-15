@@ -14,11 +14,21 @@ get_header(); ?>
 
 	
 				<section class="category-heading">
-					<h1 class="category_h1">Skønhed</h1>
+					<a href="https://www.tomineodegard.dk/kea/eksamen/costume/skoenhed/"><h1 class="category_h1">Skønhed</h1></a>
 					<p class="page_description">I vores skønhedssektion her på Costume.dk holder vores skønhedsredaktør dig opdateret på alt det nye inden for hårpleje, hudpleje og makeup, så du kan holde dig skøn året rundt – fra top til tå. Her kan du blant andet finde guides til, hvordan du får mest ud af dine skønhedsprodukter, og vi forsyner dig også med tips til flotte makeup-looks.</p>
 				</section>
 
-				<nav id="filter-options"></nav>
+				<nav id="filter_options_desktop"></nav>
+
+				<div class="dropdown_menu_container">
+					<div class="dropdown">
+						<button class="filter_btn">Filtrer efter kategori <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+						</button>
+						<nav class="dropdown_content hide" id="dropdown_filter_options"><div class="filter chosen" data-taxonomy="all"></div></nav>
+					</div>
+				</div>
+
 				<section id="articles-grid" class="grid"></section>
 
 				<div class="most_read_wrapper grid">
@@ -89,13 +99,25 @@ get_header(); ?>
 
 			showArticles();
 			showMostRead();
-			createButtons()
+			createButtons();
+			createDropdown();
 		}
 		
 		
 		function createButtons() {
 			skoenheds_kategorier.forEach(cat => {
-				document.querySelector("#filter-options").innerHTML += `<button class="filter" data-taxonomy="${cat.id}">${cat.name}</button>`;
+				document.querySelector("#filter_options_desktop").innerHTML += `<button class="filter" data-taxonomy="${cat.id}">${cat.name}</button>`;
+				
+			});
+		
+			registrerButtons();
+		}
+		
+
+
+		function createDropdown() {
+			skoenheds_kategorier.forEach(cat => {
+				document.querySelector("#dropdown_filter_options").innerHTML += `<button class="filter close_after_click" data-taxonomy="${cat.id}">${cat.name}</button>`;
 				
 			});
 		
@@ -165,6 +187,8 @@ get_header(); ?>
 
 			showArticles();
 		}
+
+		
 		
 
 		function showArticles() {
@@ -214,6 +238,7 @@ get_header(); ?>
 			   }
             })
 		}
+
 
 		</script>
 

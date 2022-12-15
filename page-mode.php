@@ -14,11 +14,21 @@ get_header(); ?>
 
 	
 				<section class="category-heading">
-					<h1 class="category_h1">Mode</h1>
+				<a href="https://www.tomineodegard.dk/kea/eksamen/costume/mode/"><h1 class="category_h1">Mode</h1></a>
 					<p class="page_description">Hvad er sæsonens hotteste trends? Hvilke nye brads skal du holde øje med? Og hvor finder du lige sæsonens mest populære item? Få svar på det og meget mere i modeektionen her på Costume.dk, hvor vores passionerede moderedaktion sørger for at holde dig ajour med alt der rører sig i modeverdenen.</p>
 				</section>
 
-				<nav id="filter-options"></nav>
+
+				<nav id="filter_options_desktop"></nav>
+
+				<div class="dropdown_menu_container">
+					<div class="dropdown">
+						<button class="filter_btn">Filtrer efter kategori</button>
+						<nav class="dropdown_content hide" id="dropdown_filter_options"><div class="filter chosen" data-taxonomy="all"></div></nav>
+					</div>
+				</div>
+
+
 				<section id="articles-grid" class="grid"></section>
 
 				<div class="most_read_wrapper grid">
@@ -89,18 +99,28 @@ get_header(); ?>
 
 			showArticles();
 			showMostRead();
-			createButtons()
+			createButtons();
+			createDropdown();
 		}
 		
 		
 		function createButtons() {
 			mode_kategorier.forEach(cat => {
-				document.querySelector("#filter-options").innerHTML += `<button class="filter" data-taxonomy="${cat.id}">${cat.name}</button>`;
+				document.querySelector("#filter_options_desktop").innerHTML += `<button class="filter" data-taxonomy="${cat.id}">${cat.name}</button>`;
 				
 			});
 		
 			registrerButtons();
-		}
+		};
+
+		function createDropdown() {
+			mode_kategorier.forEach(cat => {
+				document.querySelector("#dropdown_filter_options").innerHTML += `<button class="filter close_after_click" data-taxonomy="${cat.id}">${cat.name}</button>`;
+				
+			});
+		
+			registrerButtons();
+		};
 
 
 		function registrerButtons() {

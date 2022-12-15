@@ -14,11 +14,20 @@ get_header(); ?>
 
 	
 				<section class="category-heading">
-					<h1 class="category_h1">Kultur</h1>
+				<a href="https://www.tomineodegard.dk/kea/eksamen/costume/kultur/"><h1 class="category_h1">Kultur</h1></a>
 					<p class="page_description">Her på Costume.dk har vi altid fingeren på pulsen, når det kommer til byens bedste spisesteder, de lækreste opskrifter, nyeste film og serier samt sæsonens kulturelle begivenheder – og vi sørger også for, at holde dig opdateret på, hvad du skal opleve uden for landets grænser.</p>
 				</section>
 
-				<nav id="filter-options"></nav>
+
+				<nav id="filter_options_desktop"></nav>
+
+				<div class="dropdown_menu_container">
+					<div class="dropdown">
+						<button class="filter_btn">Filtrer efter kategori</button>
+						<nav class="dropdown_content hide" id="dropdown_filter_options"><div class="filter chosen" data-taxonomy="all"></div></nav>
+					</div>
+				</div>
+
 				<section id="articles-grid" class="grid"></section>
 
 				<div class="most_read_wrapper grid">
@@ -89,18 +98,28 @@ get_header(); ?>
 
 			showArticles();
 			showMostRead();
-			createButtons()
+			createButtons();
+			createDropdown();
 		}
 		
 		
 		function createButtons() {
 			kultur_kategorier.forEach(cat => {
-				document.querySelector("#filter-options").innerHTML += `<button class="filter" data-taxonomy="${cat.id}">${cat.name}</button>`;
+				document.querySelector("#filter_options_desktop").innerHTML += `<button class="filter" data-taxonomy="${cat.id}">${cat.name}</button>`;
 				
 			});
 		
 			registrerButtons();
-		}
+		};
+
+		function createDropdown() {
+			kultur_kategorier.forEach(cat => {
+				document.querySelector("#dropdown_filter_options").innerHTML += `<button class="filter close_after_click" data-taxonomy="${cat.id}">${cat.name}</button>`;
+				
+			});
+		
+			registrerButtons();
+		};
 
 
 		function registrerButtons() {
@@ -119,30 +138,34 @@ get_header(); ?>
 
                     let mostReadClone = mostReadTemplate.cloneNode(true).content;
 
-					if (artikel.kultur_kategorier[0] === 29) {
-						clone.querySelector(".is_category").textContent = "Skønhedsfavoritter";
-						clone.querySelector(".is_green").style.display = "none";
-					}
-
-					if (artikel.kultur_kategorier[0] === 30) {
-						mostReadClone.querySelector(".is_category").textContent = "Makeup";
+					if (artikel.kultur_kategorier[0] === 33) {
+						mostReadClone.querySelector(".is_category").textContent = "Rejse";
 						mostReadClone.querySelector(".is_green").style.display = "none";
 					}
 
-					if (artikel.kultur_kategorier[0] === 31) {
-						mostReadClone.querySelector(".is_category").textContent = "Hudpleje";
+					if (artikel.kultur_kategorier[0] === 34) {
+						mostReadClone.querySelector(".is_category").textContent = "Spisesteder";
+						mostReadClone.querySelector(".is_green").style.display = "none";
+					}
+
+					if (artikel.kultur_kategorier[0] === 35) {
+						mostReadClone.querySelector(".is_category").textContent = "Opskrifter";
+						mostReadClone.querySelector(".is_green").style.display = "none";
+					}
+
+					if (artikel.kultur_kategorier[0] === 36) {
+						mostReadClone.querySelector(".is_category").textContent = "Film og serier";
 						mostReadClone.querySelector(".is_green").style.display = "none";
 					}
 						
-
-					if (artikel.kultur_kategorier[0] === 32) {
-						mostReadClone.querySelector(".is_category").textContent = "Hårpleje";
-						mostReadClone.querySelector(".is_green").style.display = "none";
-					}
-
-					if (artikel.kultur_kategorier[0] === 41) {
+					if (artikel.kultur_kategorier[0] === 43) {
 						mostReadClone.querySelector(".is_green").textContent = "Costume Green";
 						mostReadClone.querySelector(".is_category").style.display = "none";
+					}
+
+					if (artikel.kultur_kategorier[0] === 44) {
+						mostReadClone.querySelector(".is_category").textContent = "Oplevelser";
+						mostReadClone.querySelector(".is_green").style.display = "none";
 					}
 					
 					mostReadClone.querySelector(".mostread_teaserimage").src = artikel.featuredimage.guid;
@@ -177,30 +200,34 @@ get_header(); ?>
 
                     let clone = contentTemplate.cloneNode(true).content;
 
-					if (artikel.kultur_kategorier[0] === 29) {
-						clone.querySelector(".is_category").textContent = "Skønhedsfavoritter";
+					if (artikel.kultur_kategorier[0] === 33) {
+						clone.querySelector(".is_category").textContent = "Rejse";
 						clone.querySelector(".is_green").style.display = "none";
 					}
 
-					if (artikel.kultur_kategorier[0] === 30) {
-						clone.querySelector(".is_category").textContent = "Makeup";
+					if (artikel.kultur_kategorier[0] === 34) {
+						clone.querySelector(".is_category").textContent = "Spisesteder";
 						clone.querySelector(".is_green").style.display = "none";
 					}
 
-					if (artikel.kultur_kategorier[0] === 31) {
-						clone.querySelector(".is_category").textContent = "Hudpleje";
+					if (artikel.kultur_kategorier[0] === 35) {
+						clone.querySelector(".is_category").textContent = "Opskrifter";
+						clone.querySelector(".is_green").style.display = "none";
+					}
+
+					if (artikel.kultur_kategorier[0] === 36) {
+						clone.querySelector(".is_category").textContent = "Film og serier";
 						clone.querySelector(".is_green").style.display = "none";
 					}
 						
-
-					if (artikel.kultur_kategorier[0] === 32) {
-						clone.querySelector(".is_category").textContent = "Hårpleje";
-						clone.querySelector(".is_green").style.display = "none";
-					}
-
-					if (artikel.kultur_kategorier[0] === 41) {
+					if (artikel.kultur_kategorier[0] === 43) {
 						clone.querySelector(".is_green").textContent = "Costume Green";
 						clone.querySelector(".is_category").style.display = "none";
+					}
+
+					if (artikel.kultur_kategorier[0] === 44) {
+						clone.querySelector(".is_category").textContent = "Oplevelser";
+						clone.querySelector(".is_green").style.display = "none";
 					}
 					
 					clone.querySelector(".teaserimage").src = artikel.featuredimage.guid;

@@ -12,8 +12,6 @@ get_header(); ?>
 
                 <div class="text-wrapper">
                     <div class="header_container">
-                        <p class="is_category"></p>
-                        <p class="is_green"></p>
                         <h1 class="heading h1-single"></h1>
                         <h2 class="subheading h2-single"></h2>
                         <div class="author_and_date">
@@ -46,20 +44,26 @@ get_header(); ?>
 
                 <figure class="pack-wrap" >
                     <img class="packshot2" src="" alt="">
-                    <p class="packbrand2"></p>
-                    <p class="packprice2"></p>
+                    <div class="packinfo">
+                        <p class="packbrand2"></p>
+                        <p class="packprice2"></p>
+                    </div>
                 </figure>
 
                 <figure class="pack-wrap">
                     <img class="packshot3" src="" alt="">
-                    <p class="packbrand3"></p>
-                    <p class="packprice3"></p>
+                    <div class="packinfo">
+                        <p class="packbrand3"></p>
+                        <p class="packprice3"></p>
+                    </div>
                 </figure>
 
                 <figure class="pack-wrap">
                     <img class="packshot4" src="" alt="">
-                    <p class="packbrand4"></p>
-                    <p class="packprice4"></p>
+                    <div class="packinfo">
+                        <p class="packbrand4"></p>
+                        <p class="packprice4"></p>
+                    </div>
                 </figure>
             </section>
         </section>
@@ -89,7 +93,6 @@ get_header(); ?>
             function showSingleArticle() {
                 console.log(article);
 
-                document.querySelector(".is_category").textContent = article.skoenheds_kategorier;
                 document.querySelector(".heading").textContent = article.title.rendered;
                 document.querySelector(".subheading").textContent = article.subheading;
                 document.querySelector(".subheading").textContent = article.subheading;        
