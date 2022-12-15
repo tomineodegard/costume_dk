@@ -36,29 +36,37 @@ get_header(); ?>
        
 
             <section id="pack-grid">
-                <div class="pack-wrap">
+                <figure class="pack-wrap">
                     <img class="packshot1" src="" alt="">
-                    <p class="packbrand1"></p>
-                    <p class="packprice1"></p>
-                </div>
+                    <div class="packinfo">
+                        <p class="packbrand1"></p>
+                        <p class="packprice1"></p>
+                    </div>
+                </figure>
 
-                <div class="pack-wrap" >
+                <figure class="pack-wrap" >
                     <img class="packshot2" src="" alt="">
-                    <p class="packbrand2"></p>
-                    <p class="packprice2"></p>
-                </div>
+                    <div class="packinfo">
+                        <p class="packbrand2"></p>
+                        <p class="packprice2"></p>
+                    </div>
+                </figure>
 
-                <div class="pack-wrap">
+                <figure class="pack-wrap">
                     <img class="packshot3" src="" alt="">
-                    <p class="packbrand3"></p>
-                    <p class="packprice3"></p>
-                </div>
+                    <div class="packinfo">
+                        <p class="packbrand3"></p>
+                        <p class="packprice3"></p>
+                    </div>
+                </figure>
 
-                <div class="pack-wrap">
+                <figure class="pack-wrap">
                     <img class="packshot4" src="" alt="">
-                    <p class="packbrand4"></p>
-                    <p class="packprice4"></p>
-                </div>
+                    <div class="packinfo">
+                        <p class="packbrand4"></p>
+                        <p class="packprice4"></p>
+                    </div>
+                </figure>
             </section>
         </section>
 
