@@ -317,11 +317,23 @@ h5 {
 
 
 /* ----- SINGLEPAGE PACK SECTION ----- */
+.pack-heading {
+  margin-top: 4rem;
+}
+
+
 #pack-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  padding: 4rem 0 4rem 0;
+  padding: 0 0 4rem 0;
+}
+
+.pack-h3 {
+  font-family: var(--sansSerif);
+  font-size: 2.369rem;
+  color: var(--spaceGrey);
+  font-weight: 500;
 }
 
 .pack-wrap {
