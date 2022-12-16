@@ -36,8 +36,9 @@ get_header(); ?>
             </div>
             </article>
        
-            <div class="pack-heading">
-                <h3 class="pack-h3">Inspireret? Vi har fire fund til dig lige her...</h3>            </div>
+            <!-- <div class="pack-heading">
+                <h3 class="pack-h3">Inspireret? Vi har fire fund til dig lige her...</h3>
+            </div> -->
             <section id="pack-grid">
                 <figure class="pack-wrap">
                 <a href="#"><img class="packshot1" src="" alt=""></a>
