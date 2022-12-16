@@ -2,6 +2,8 @@
 
 get_header(); ?>
 
+<div id="content-wrap" class="container clr">
+      <div id="primary" class="conent-area clr">
   
         <section class="single_sticky_section">
         <article id="kultur-artikel">
@@ -37,38 +39,41 @@ get_header(); ?>
 
             <section id="pack-grid">
                 <figure class="pack-wrap">
-                    <img class="packshot1" src="" alt="">
+                <a href="#"><img class="packshot1" src="" alt=""></a>
                     <div class="packinfo">
-                        <p class="packbrand1"></p>
-                        <p class="packprice1"></p>
+                        <a href="#"><p class="packbrand1"></p></a>
+                        <a href="#"><p class="packprice1"></p></a>
                     </div>
                 </figure>
 
                 <figure class="pack-wrap" >
-                    <img class="packshot2" src="" alt="">
+                    <a href="#"><img class="packshot2" src="" alt=""></a>
                     <div class="packinfo">
-                        <p class="packbrand2"></p>
-                        <p class="packprice2"></p>
+                        <a href="#"><p class="packbrand2"></p></a>
+                        <a href="#"><p class="packprice2"></p></a>
                     </div>
                 </figure>
 
                 <figure class="pack-wrap">
-                    <img class="packshot3" src="" alt="">
+                    <a href="#"><img class="packshot3" src="" alt=""></a>
                     <div class="packinfo">
-                        <p class="packbrand3"></p>
-                        <p class="packprice3"></p>
+                        <a href="#"><p class="packbrand3"></p></a>
+                        <a href="#"><p class="packprice3"></p></a>
                     </div>
                 </figure>
 
                 <figure class="pack-wrap">
-                    <img class="packshot4" src="" alt="">
+                    <a href="#"><img class="packshot4" src="" alt=""></a>
                     <div class="packinfo">
-                        <p class="packbrand4"></p>
-                        <p class="packprice4"></p>
+                        <a href="#"><p class="packbrand4"></p></a>
+                        <a href="#"><p class="packprice4"></p></a>
+                       
                     </div>
                 </figure>
             </section>
         </section>
+    </div>
+</div>
 
 
 
